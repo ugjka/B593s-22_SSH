@@ -110,7 +110,7 @@ func main() {
 	}
 	conf, err := decryptConf(confKey, confIV, b)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Could not decrypt the fonf file. Error: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Could not decrypt the conf file. Error: %v\n", err)
 		return
 	}
 	match := adminPassReg.FindSubmatch(conf)

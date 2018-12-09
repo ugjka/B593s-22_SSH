@@ -20,3 +20,7 @@ sshpass -p '02D8B197' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cb
 *************************
 Once in, type "shell" and hit enter! :)
 ```
+
+# Binaries
+
+https://github.com/ugjka/B593s-22_SSH/releases

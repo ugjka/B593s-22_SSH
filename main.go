@@ -200,7 +200,7 @@ func getSHA(username, password string, t *tokens) string {
 	return fmt.Sprintf("%x", sha256.Sum256([]byte(combined)))
 }
 
-func findSubmatch(r *regexp.Regexp, in string) (out string, err error) {
+func findSubmatch(r *regexp.Regexp, in string) (string, error) {
 	arr := r.FindStringSubmatch(in)
 	if len(arr) < 2 {
 		return "", fmt.Errorf("no regexp matches")
@@ -209,40 +209,41 @@ func findSubmatch(r *regexp.Regexp, in string) (out string, err error) {
 }
 
 func rsaModulusToBigInt(m string) (b big.Int, err error) {
-	if _, err := fmt.Sscanf(m, "%X", &b); err != nil {
-		return b, err
+	_, err = fmt.Sscanf(m, "%X", &b)
+	if err != nil {
+		return
 	}
 	return
 }
 
 func rsaExponentToInt(e string) (i int, err error) {
-	if _, err := fmt.Sscanf(e, "%X", &i); err != nil {
-		return i, err
+	_, err = fmt.Sscanf(e, "%X", &i)
+	if err != nil {
+		return
 	}
 	return
 }
 
-func rsaPublicKey(mod, exp string) (pub *rsa.PublicKey, err error) {
+func rsaPublicKey(mod, exp string) (*rsa.PublicKey, error) {
 	m, err := rsaModulusToBigInt(mod)
 	if err != nil {
-		return
+		return nil, err
 	}
 	e, err := rsaExponentToInt(exp)
 	if err != nil {
-		return
+		return nil, err
 	}
-	pub = new(rsa.PublicKey)
+	pub := new(rsa.PublicKey)
 	pub.N = &m
 	pub.E = e
-	return
+	return pub, nil
 }
 
-func rsaEncrypt(in string, pub *rsa.PublicKey) (outB64 string, err error) {
+func rsaEncrypt(in string, pub *rsa.PublicKey) (string, error) {
 	b, err := rsa.EncryptPKCS1v15(rand.Reader, pub, []byte(in))
 	if err != nil {
-		return
+		return "", err
 	}
-	//Check different encodings if this does not work
 	return base64.StdEncoding.EncodeToString(b), nil
 }
 

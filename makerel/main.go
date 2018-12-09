@@ -34,7 +34,8 @@ func main() {
 			zip.Stderr = os.Stderr
 			zip.Stdout = os.Stdout
 			if t.os == "windows" {
-				zip.Args = []string{"-9", fmt.Sprintf("B593s-22_SSH_%s_%s.zip", t.os, arch), "B593s-22_SSH.exe", "LICENSE", "README.md"}
+				os.Rename("B593s-22_SSH.exe", "B593s22SSH.exe")
+				zip.Args = []string{"-9", fmt.Sprintf("B593s-22_SSH_%s_%s.zip", t.os, arch), "B593s22SSH.exe", "LICENSE", "README.md"}
 			} else {
 				zip.Args = []string{"-9", fmt.Sprintf("B593s-22_SSH_%s_%s.zip", t.os, arch), "B593s-22_SSH", "LICENSE", "README.md"}
 			}
@@ -42,7 +43,7 @@ func main() {
 				panic(err)
 			}
 			if t.os == "windows" {
-				if err := os.Remove("B593s-22_SSH.exe"); err != nil {
+				if err := os.Remove("B593s22SSH.exe"); err != nil {
 					panic(err)
 				}
 				continue

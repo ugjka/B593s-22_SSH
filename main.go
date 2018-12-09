@@ -194,7 +194,7 @@ func decryptPass(passEnc, key, iv string) (string, error) {
 	return rootPassString, nil
 }
 
-func getSHA(username string, password string, t *tokens) string {
+func getSHA(username, password string, t *tokens) string {
 	passB64 := base64.StdEncoding.EncodeToString([]byte(password))
 	combined := username + passB64 + t.csrfParam + t.csrfToken
 	return fmt.Sprintf("%x", sha256.Sum256([]byte(combined)))
@@ -222,7 +222,7 @@ func rsaExponentToInt(e string) (i int, err error) {
 	return
 }
 
-func rsaPublicKey(mod string, exp string) (pub *rsa.PublicKey, err error) {
+func rsaPublicKey(mod, exp string) (pub *rsa.PublicKey, err error) {
 	m, err := rsaModulusToBigInt(mod)
 	if err != nil {
 		return

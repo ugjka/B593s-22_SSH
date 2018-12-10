@@ -1,5 +1,5 @@
 # B593s-22_SSH
-Get root ssh for HUAWEI B593s-22 LTE modem/router
+Get ssh login for HUAWEI B593s-22 LTE modem/router
 
 [![Donate](https://dl.ugjka.net/Donate-PayPal-green.svg)](https://www.paypal.me/ugjka)
 

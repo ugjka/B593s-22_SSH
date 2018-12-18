@@ -56,7 +56,7 @@ type tokens struct {
 
 func main() {
 	host := flag.String("host", "192.168.1.1", "B593s-22's ip adress")
-	password := flag.String("password", "", "web gui admin password")
+	password := flag.String("pass", "", "web gui admin password")
 	flag.Parse()
 	if *password == "" {
 		flag.Usage()

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/des"
@@ -16,6 +17,7 @@ import (
 	"net/http/cookiejar"
 	"net/url"
 	"os"
+	"os/exec"
 	"regexp"
 	"strings"
 	"time"
@@ -32,6 +34,7 @@ const (
 	passIV       = "8049E91025A6B548"
 	confKey      = "3E4F5612EF64305955D543B0AE350880"
 	confIV       = "8049E91025A6B54876C3B4868090D3FC"
+	sshComm      = "sshpass -p '%s' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@%s"
 )
 
 const messagetmpl = `Credentials found! Use:
@@ -124,6 +127,10 @@ func main() {
 		return
 	}
 	fmt.Printf(messagetmpl, pass, *host)
+	cmd := exec.Command("xsel", "-b")
+	buff := bytes.NewBufferString(fmt.Sprintf(sshComm, pass, *host))
+	cmd.Stdin = buff
+	cmd.Run()
 }
 
 func decryptConf(key, iv string, b []byte) ([]byte, error) {

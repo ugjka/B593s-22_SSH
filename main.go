@@ -34,7 +34,7 @@ const (
 	passIV       = "8049E91025A6B548"
 	confKey      = "3E4F5612EF64305955D543B0AE350880"
 	confIV       = "8049E91025A6B54876C3B4868090D3FC"
-	sshComm      = "sshpass -p '%s' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@%s"
+	sshComm      = "sshpass -p '%s' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oStrictHostKeyChecking=no -c 3des-cbc admin@%s"
 )
 
 const messagetmpl = `Credentials found! Use:

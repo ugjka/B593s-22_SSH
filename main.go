@@ -39,7 +39,7 @@ const (
 
 const messagetmpl = `Credentials found! Use:
 *************************
-sshpass -p '%s' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@%s
+sshpass -p '%s' ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oStrictHostKeyChecking=no -c 3des-cbc admin@%s
 *************************
 Once in, type "shell" and hit enter! :)
 `

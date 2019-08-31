@@ -3,6 +3,20 @@ Get ssh login for HUAWEI B593s-22 LTE modem/router
 
 [![Donate](https://dl.ugjka.net/Donate-PayPal-green.svg)](https://www.paypal.me/ugjka)
 
+## Hardware and Firmware version you need
+```Product Information
+Model:
+B593s-22
+SN:
+S2Z7S15624000308
+Hardware version:
+Ver.B
+Firmware version:
+V200R001B270D10SP00C00
+Firmware build time:
+Aug 20 2014 / 11:22:16
+```
+
 ## Usage
 ```
 Usage of ./B593s-22_SSH:
